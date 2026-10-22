@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>收 · Shou — 隐私政策 / Privacy Policy</title>
+<style>
+  :root {
+    --ink: #14171a;
+    --muted: #5b636b;
+    --brand: #0d6858;
+    --paper: #f6f7f6;
+    --rule: #dde1e0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.75 -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; padding: 3.5rem 1.5rem 6rem; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; margin-bottom: 2.5rem; }
+  .name { font-size: 1.05rem; letter-spacing: .02em; color: var(--brand); font-weight: 600; margin: 0 0 .5rem; }
+  h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .75rem; letter-spacing: -.01em; }
+  .updated { color: var(--muted); font-size: .875rem; margin: 0; }
+  nav { margin: 1.5rem 0 0; display: flex; gap: 1.25rem; font-size: .9rem; }
+  nav a { color: var(--brand); text-decoration: none; border-bottom: 1px solid transparent; }
+  nav a:hover { border-bottom-color: var(--brand); }
+  .doc { display: none; }
+  .doc.active { display: block; }
+  h2 { font-size: 1.15rem; margin: 2.5rem 0 .75rem; letter-spacing: -.005em; }
+  h3 { font-size: 1rem; margin: 1.75rem 0 .5rem; color: var(--brand); }
+  p, li { margin: 0 0 .9rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: .45rem; }
+  strong { font-weight: 600; }
+  code {
+    font: .9em/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: #e9ecea; padding: .1em .35em; border-radius: 3px;
+  }
+  .lead {
+    background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--brand);
+    padding: 1rem 1.15rem; margin: 1.75rem 0; border-radius: 2px;
+  }
+  .lead p:last-child { margin-bottom: 0; }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .875rem; }
+  footer a { color: var(--brand); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="name">收 · Shou</p>
+    <h1>隐私政策<br><span lang="en">Privacy Policy</span></h1>
+    <p class="updated">最后更新 / Last updated: 2026 年 10 月 22 日</p>
+    <nav>
+      <a href="#zh" id="link-zh">简体中文</a>
+      <a href="#en" id="link-en">English</a>
+    </nav>
+  </header>
+
+  <!-- ============================ 简体中文 ============================ -->
+  <article class="doc" id="zh" lang="zh-Hans">
+    <p class="lead">
+      一句话：扫描和判定都在你的 Mac 本机上完成，不会上传。只有你自己选择使用 AI 分析并配置了模型服务时，
+      才会把当次扫描的一份摘要发到你指定的那个服务。
+    </p>
+
+    <h2>一、在本机处理、不上传的内容</h2>
+    <ul>
+      <li><strong>文件路径与体积。</strong>扫描会读取文件系统元数据（路径、大小、占用、文件数、修改时间），用来生成清单和判定。</li>
+      <li><strong>判定结果。</strong>每一项属于「可回收 / 有代价 / 受保护」，由程序内嵌的确定性规则产生，不经过任何网络请求。</li>
+      <li><strong>清理记录。</strong>哪一项在什么时候被移动、还原还是删除，记录在本机的审计库中（<code>~/Library/Application Support/app.shou/</code>）。</li>
+      <li><strong>隔离区内容。</strong>被移走的文件原样保存在你本机的隔离区里，七个自然日后按设置清理。</li>
+    </ul>
+    <p>这些数据都不离开你的设备。收没有账号系统，不需要登录，也不含任何分析、埋点或崩溃上报 SDK。</p>
+
+    <h2>二、会发出的内容</h2>
+    <h3>AI 深度分析（默认关闭，需你自己配置）</h3>
+    <p>这是收唯一会联网的功能。不配置任何模型服务时，程序不会发出任何请求。</p>
+    <p>当你主动点「AI 分析」，并且已经在配置里选择了一个模型服务（可设为 OpenAI、Anthropic、DeepSeek 或一切兼容接口的本地/自建服务，包括 Ollama），收会向<strong>你配置的那一个地址</strong>发送：</p>
+    <ul>
+      <li>本次扫描摘要中的<strong>元数据</strong>：相对家目录的路径、条目类型、逻辑大小与实际占用、文件数、最后修改日期、判定类别与说明、命中的规则名；</li>
+      <li>磁盘总量与可用量；</li>
+      <li>如果条目数超出上限，会附带「还有多少条被省略」。</li>
+    </ul>
+    <p>扫描摘要有硬性上限（最多 120 条，按体积取最大的那些），所以发送的数据量与磁盘总大小无关。</p>
+    <p><strong>默认不发送文件内容。</strong>只有在配置中显式开启「内容采样」后，才会对体积足够小、且满足触发条件的文本文件读取开头的少量字节；读取前会先做密钥指纹检测，命中就整段丢弃，只上报「这里疑似有密钥」，不会把密钥发出去。</p>
+    <p><strong>API 密钥</strong>保存在你自己的配置文件或环境变量里，只用于向你选定的服务商发起请求，不会被发送到其他地方，也不会写入日志或错误信息。</p>
+
+    <h3>模型服务的处理</h3>
+    <p>你选定的服务商（例如 DeepSeek、OpenAI、Anthropic，或你自己搭的 Ollama）会按其自身的隐私政策处理收到的摘要。这部分不在收的控制范围内——请不要把你不希望交给该服务商的信息放进会被扫描的目录，或改用本机运行的模型服务。</p>
+
+    <h3>不包含的内容</h3>
+    <p>收不收集、不上传：你的姓名、邮箱、设备标识符、IP 地址（除与所选模型服务通信时必然产生的连接信息外）、使用统计、崩溃报告。</p>
+
+    <h2>三、macOS 权限</h2>
+    <p>读取 <code>~/Library</code> 下的部分缓存目录，需要你在「系统设置 → 隐私与安全性 → 完全磁盘访问权限」中授权。该权限由 macOS 授予，收只能读取系统允许它读取的路径；不授权时功能受限，界面会说明哪些目录读不到。</p>
+
+    <h2>四、你可以做的</h2>
+    <ul>
+      <li>不配置模型服务：AI 分析不可用，其余功能完全正常，程序不联网。</li>
+      <li>删除配置里的密钥、改用环境变量、或把服务商换成本机运行的模型服务。</li>
+      <li>随时在隔离区里彻底删除已经移走的文件，或清空审计记录。</li>
+      <li>卸载即停止一切处理；卸载后本机残留的配置与审计库可直接删除。</li>
+    </ul>
+
+    <h2>五、儿童</h2>
+    <p>收是面向开发者的工具，不面向 13 岁以下儿童，也不会有意收集其信息。</p>
+
+    <h2>六、变更</h2>
+    <p>本政策如有更新，会随应用版本发布并修改上方日期。</p>
+
+    <h2>七、联系</h2>
+    <p>有问题请发邮件至：<a href="mailto:goodjackwork@gmail.com">goodjackwork@gmail.com</a></p>
+  </article>
+
+  <!-- ============================== English ============================== -->
+  <article class="doc" id="en" lang="en">
+    <p class="lead">
+      In one sentence: scanning and verdicts happen entirely on your Mac and are never uploaded.
+      A summary of the current scan is sent to a model provider only when you choose to use AI
+      analysis and configure that provider yourself.
+    </p>
+
+    <h2>1. Processed locally, never uploaded</h2>
+    <ul>
+      <li><strong>File paths and sizes.</strong> Scanning reads file system metadata (path, size, allocated size, file count, modification time) to build the list and the verdicts.</li>
+      <li><strong>Verdicts.</strong> Every item is classed as reclaimable, costly or protected by deterministic rules built into the binary. No network request is involved.</li>
+      <li><strong>Cleanup history.</strong> Which item was moved, restored or deleted, and when, is recorded in a local audit database (<code>~/Library/Application Support/app.shou/</code>).</li>
+      <li><strong>Quarantine contents.</strong> Moved files are kept as they are in a local quarantine folder and cleaned up according to your settings after seven days.</li>
+    </ul>
+    <p>None of this leaves your device. Shou has no accounts, no sign-in, and no analytics, tracking or crash-reporting SDK.</p>
+
+    <h2>2. What is sent out</h2>
+    <h3>AI analysis (off by default, requires your configuration)</h3>
+    <p>This is the only feature that uses the network. With no model provider configured, the app makes no requests at all.</p>
+    <p>When you click AI analysis and have selected a provider (OpenAI, Anthropic, DeepSeek, or any compatible endpoint including a local Ollama instance), Shou sends <strong>to the address you configured</strong>:</p>
+    <ul>
+      <li>the <strong>metadata</strong> from this scan: paths relative to your home folder, item type, logical and allocated size, file count, last modification date, verdict category and note, and the rule that matched;</li>
+      <li>total and available disk space;</li>
+      <li>if the item count exceeded the cap, how many were omitted.</li>
+    </ul>
+    <p>The summary has a hard cap (at most 120 items, the largest by size), so the amount sent does not grow with disk size.</p>
+    <p><strong>File contents are not sent by default.</strong> Only if you explicitly enable content sampling does Shou read the first few bytes of small text files that meet the trigger conditions. Before sending, the sample passes a secret-fingerprint check; on a match the whole sample is discarded and only "this looks like a secret" is reported.</p>
+    <p><strong>API keys</strong> live in your own configuration file or environment variables. They are used only to call the provider you selected, are never sent anywhere else, and never appear in logs or error messages.</p>
+
+    <h3>What the provider does with it</h3>
+    <p>The provider you choose (DeepSeek, OpenAI, Anthropic, or your own Ollama) handles the received summary under its own privacy policy. That part is outside Shou's control. Do not place information you would not share with that provider in folders that will be scanned, or use a model running on your own machine.</p>
+
+    <h3>What is never collected</h3>
+    <p>Shou does not collect or upload your name, email address, device identifiers, usage statistics or crash reports. Beyond the connection necessarily made to the model provider you selected, no network traffic is generated.</p>
+
+    <h2>3. macOS permissions</h2>
+    <p>Reading some cache folders under <code>~/Library</code> requires Full Disk Access in System Settings → Privacy &amp; Security. That permission is granted by macOS, and Shou can only read paths the system allows. Without it the app still works with a smaller scope and tells you which folders could not be read.</p>
+
+    <h2>4. Your choices</h2>
+    <ul>
+      <li>Configure no model provider: AI analysis stays unavailable, everything else works, and the app does not use the network.</li>
+      <li>Remove keys from the configuration, switch to environment variables, or point the provider at a local model.</li>
+      <li>Permanently delete quarantined files at any time, or clear the audit records.</li>
+      <li>Uninstalling stops all processing; the configuration and audit database left on disk can be deleted directly.</li>
+    </ul>
+
+    <h2>5. Children</h2>
+    <p>Shou is a tool for developers and is not directed at children under 13. It does not knowingly collect information from them.</p>
+
+    <h2>6. Changes</h2>
+    <p>Updates to this policy ship with app releases and change the date above.</p>
+
+    <h2>7. Contact</h2>
+    <p>Questions: <a href="mailto:goodjackwork@gmail.com">goodjackwork@gmail.com</a></p>
+  </article>
+
+  <footer>
+    <p>收 · Shou — DIGITAL BANG INTELLIGENCE LLC · <a href="https://github.com/Claudate/shou-privacy">源码</a></p>
+  </footer>
+</main>
+
+<script>
+  // 用 hash 切换语言，不刷新页面：Apple 的抓取器能拿到完整 HTML，
+  // 人切换时也不会跳走。默认中文。
+  (function () {
+    var zh = document.getElementById('zh');
+    var en = document.getElementById('en');
+    var linkZh = document.getElementById('link-zh');
+    var linkEn = document.getElementById('link-en');
+
+    function show(lang) {
+      var isEn = lang === 'en';
+      zh.classList.toggle('active', !isEn);
+      en.classList.toggle('active', isEn);
+      document.documentElement.lang = isEn ? 'en' : 'zh-Hans';
+      document.title = isEn
+        ? 'Shou — Privacy Policy'
+        : '收 · Shou — 隐私政策';
+    }
+
+    linkZh.addEventListener('click', function (e) { e.preventDefault(); location.hash = 'zh'; });
+    linkEn.addEventListener('click', function (e) { e.preventDefault(); location.hash = 'en'; });
+    window.addEventListener('hashchange', function () {
+      show(location.hash.replace('#', '') === 'en' ? 'en' : 'zh');
+    });
+
+    show(location.hash.replace('#', '') === 'en' ? 'en' : 'zh');
+  })();
+</script>
+</body>
+</html>
